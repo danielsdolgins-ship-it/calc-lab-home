@@ -1,7 +1,7 @@
 // Daniels Dolgins 251RDC081
 // https://github.com/danielsdolgins-ship-it/calc-lab-home
 // Compile with: gcc -O2 -Wall -Wextra -std=c17 -o calc calc.c -lm
-// Resources used: <every AI tool, website and book you used; details in comments where you used them>
+// Resources used: <https://www.w3schools.com/, https://www.programiz.com/>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +25,7 @@ static long long parse_expr(const char *line, int *idx, long line_offset);
 static long long parse_term(const char *line, int *idx, long line_offset);      // declare functions
 static long long parse_power(const char *line, int *idx, long line_offset);
 static long long parse_primary(const char *line, int *idx, long line_offset);
-
+//https://www.programiz.com/c-programming/library-function/ctype.h/isspace
 static void skip_spaces(const char *line, int *idx) {
     while (line[*idx] == ' ' || line[*idx] == '\t') {   //to skip spaces or tabs
         (*idx)++;
@@ -52,7 +52,7 @@ static long long parse_primary(const char *line, int *idx, long line_offset) {  
             return 0;
         }
     }
-
+    //https://www.programiz.com/c-programming/library-function/ctype.h/isdigit
     if (isdigit((unsigned char)line[*idx])) {       // if we find a digit, turn the text digits into a full integer
         long long num = 0;
         while (isdigit((unsigned char)line[*idx])) {
@@ -188,7 +188,7 @@ static int eval_line(const char *line, long line_offset, long long *result) {
     *result = val;
     return 1;
 }
-//  reads input file and writes the asnwers, or error
+//  reads input file and writes the asnwers, or error https://www.w3schools.com/c/c_files.php
 static void process_file(const char *input_path, const char *output_path) {
     FILE *in = fopen(input_path, "r");
     if (!in) {
@@ -280,7 +280,7 @@ static void process_file(const char *input_path, const char *output_path) {
 int main(int argc, char *argv[]) {
     const char *out_dir = "results";    // folder for output files
     const char *in_file = NULL;
-
+    // https://www.programiz.com/c-programming/library-function/string.h/strcmp
     //check for options like -o for changing output directory
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
